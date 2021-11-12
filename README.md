@@ -1,5 +1,7 @@
 # OpenLayers Reference Guide
 
+[Docs](https://openlayers.org/en/latest/apidoc/)
+
 ToC:
 
 ### Core Nuts and Bolts of OpenLayers:
