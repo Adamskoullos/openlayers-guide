@@ -2,15 +2,9 @@
 
 ToC:
 
-- [Maps and Nuxt]()
-- [Install and Set-Up]()
-- [Map Object Deep Dive]()
-- [Vector Features]()
-- [Debugging]()
+### Core Nuts and Bolts of OpenLayers:
 
-### Core Nuts and Bolts OpenLayers:
-
-- [Key Concepts]()
+- [Key Concepts](https://github.com/Adamskoullos/openlayers-guide/blob/main/course_notes/key_concepts.md)
 - [Raster Layers]()
 - [Vector Layers]()
 - [Styling Vector Layers]()
@@ -18,3 +12,8 @@ ToC:
 - [Map Interactions]()
 - [Map Controls]()
 - [Geolocation API]()
+
+### Maps and Nuxt
+
+- [Nuxt and 3rd Party Code]()
+- [Install and Set-Up]()
