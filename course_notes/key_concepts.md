@@ -15,6 +15,8 @@ The `Map` object has some core properties:
 2. `layer` > The map image, an array of map image types
 3. `overlay` > Informational pop ups that appear when an area is clicked on
 4. `target` > The HTML element where the map will be housed
+5. `interactions` > Mouse and Keyboard user interactions with the map
+6. `controls` > UI components the user can interact with the map
 
 Basic example of the `map` object:
 
@@ -212,10 +214,12 @@ Default controls:
 2. Map Attribute
 3. Rotate
 
-By extending the default options we can add further controls to the UI. We can add the top level property `controls` to the map object:
+By extending the default options we can add further controls to the UI. We can add the top level property `controls` to the map object.
+
+The below example shows how to add the `OverviewMap` which is the inset map in the bottom left corner of the screen and provides a zoomed out view of the total map, also allowing the user to focus in on specific parts of the map:
 
 ```js
-// outside of map object but within init()
+// outside of map object but within init(), create the OverviewMap
 const overViewMapControl = new ol.control.OverviewMap({
   layers: [
     new ol.layer.Tile({
@@ -224,6 +228,6 @@ const overViewMapControl = new ol.control.OverviewMap({
   ],
 });
 
-// Inside the map object add the `control` property and extend by adding further controls
+// Inside the map object add the `control` property and extend by adding further controls within an array
 controls: ol.control.defaults().extend([overViewMapControl]);
 ```

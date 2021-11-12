@@ -1,4 +1,16 @@
 const init = () => {
+  // Create the OverviewMap
+  const overViewMapControl = new ol.control.OverviewMap({
+    collapsed: false, // Ensures the overview is shown in initial load
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      }),
+    ],
+  });
+  // Create the scale line
+  const scaleLineControl = new ol.control.ScaleLine();
+
   const map = new ol.Map({
     view: new ol.View({
       center: [0, 0],
@@ -11,6 +23,10 @@ const init = () => {
     ],
     target: "js_map",
     keyboardEventTarget: document, // Allows the user to navigate the map using the keyboard
+    // Inside the map object add the `control` property and extend by adding further controls within an array
+    controls: ol.control
+      .defaults()
+      .extend([overViewMapControl, scaleLineControl]),
   });
 
   // Overlay: create overlay and attach the container element
@@ -41,7 +57,7 @@ const init = () => {
   const drawInteraction = new ol.interaction.Draw({
     type: "Polygon",
   });
-  map.addInteraction(drawInteraction);
+  // map.addInteraction(drawInteraction);
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 };
