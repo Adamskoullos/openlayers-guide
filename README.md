@@ -2,6 +2,50 @@
 
 [Docs](https://openlayers.org/en/latest/apidoc/)
 
+## Top down overview of layers in OpenLayers
+
+- **`BaseLayer`**
+  - **`Layer`**
+    - **`BaseImageLayer`** > Un-Tiled Raster Layers > Static Raster Images
+    - **`BaseTileLayer`** > Tiled Raster Layers
+    - **`BaseVectorLayer`** > Points, Lines and Polygons
+      - **`VectorTileLayer`**
+      - **`VectorImageLayer`** > Un-Tiled Vector Layers (faster but less accurate)
+      - **`VectorLayer`** > Un-Tiled Vector Layers (slower but more accurate)
+  - **`LayerGroup`**
+
+---
+
+## Top down overview of Sources in OpenLayers
+
+- **`Sources`**
+  - **`TileSource`**: > Abstract Base Class
+    - `UrlTile` > HTTP request is used to get data
+      - `TileImage`
+        - `BingMaps`
+        - **`XYZ`** > Can be used with multiple sources when using the `url`
+          - CartoDB
+          - OSM
+          - Stamen
+          - TileDebug
+        - `TileArc GISRest`
+        - `TileWMS`
+        - `WMTS`
+        - `Zoomify`
+        - `IIIF`
+      - `VectorTile`
+    - `UTFGrid` > `TileJSON` Format is used from MapBox
+  - **`ImageSource`**:
+    - **`ImageArcGISRest`**
+    - **`ImageCanvasSource`**
+    - **`ImageMapGuide`**
+    - **`ImageStatic`**
+    - **`ImageWMS`**
+    - **`RasterSource`**
+  - **`VectorSource`**:
+
+---
+
 ToC:
 
 ### Core Nuts and Bolts of OpenLayers:
