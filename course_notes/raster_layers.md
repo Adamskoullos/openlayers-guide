@@ -306,6 +306,36 @@ const baseLayerGroup = new ol.layer.Group({
 map.addLayer(baseLayerGroup);
 ```
 
+- Section 2 > Wire up the side nav radio buttons to toggle between base layers
+
+```js
+// Base layer switcher logic ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Grab base layer elements
+const baseLayerElements = document.querySelectorAll(
+  ".sidebar > input[type=radio]"
+);
+// Add event listener to radios
+baseLayerElements.forEach((el) => {
+  el.addEventListener("change", () => {
+    // The below methods are built in OpenLayers methods
+    // Toggle between base layers depending on which radio button is checked
+    baseLayerGroup.getLayers().forEach((element, index, array) => {
+      if (element.get("title") === el.value) {
+        element.set("visible", true);
+      } else {
+        element.set("visible", false);
+      }
+    });
+  });
+});
+```
+
+- Section 3 > Wire up the tiled layers with checkboxes so they can be added as overlays on top of the base layer and also stacked on top of each other:
+
+```js
+
+```
+
 ---
 
 ## Static Raster Images
