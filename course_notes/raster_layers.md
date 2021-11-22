@@ -253,7 +253,7 @@ NOAAWSMLayer.set("maxZoom", 5);
 
 ## Managing Multi-Layers
 
-This is a test 
+This is another test
 
 ---
 
