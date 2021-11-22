@@ -5,11 +5,21 @@ body {
   margin: 0;
   padding: 0;
 }
-.map {
-  height: 90vh;
-  width: 90vw;
+/* .map {
+  height: 100%;
+  width: 100%;
   margin: 5vh;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 2px 3px 25px rgba(0, 0, 0, 0.3);
+} */
+
+#grid_container {
+  display: grid;
+  grid-template-columns: 20vw 80vw;
+  grid-template-rows: 100vh;
+}
+
+.grid-1 {
+  padding-left: 20px;
 }

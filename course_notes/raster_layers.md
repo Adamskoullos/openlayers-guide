@@ -253,7 +253,58 @@ NOAAWSMLayer.set("maxZoom", 5);
 
 ## Managing Multi-Layers
 
-This is another test
+The UI now has a side bar with radio buttons that will control which layer is visible.
+Layers are to be split up into two groups, base map layers and tile layers. The base amp layers to be controlled by the radio buttons
+and the tile layers each to have their own check box that can be added on top of the base map layer.
+
+- Section 1 > Adding base layers:
+
+1. remove the `layer` property from the `Map` object
+2. Create Base Map layers and add them to the base map layer group
+3. Add baseMapLayerGroup to map object
+
+```js
+const map = new ol.Map({
+  view: new ol.View({
+    center: [0, 0],
+    zoom: 2,
+  }),
+  target: "js_map",
+});
+// Base Layers >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// OSM Standard
+const opentreetMapStandard = new ol.layer.Tile({
+  source: new ol.source.OSM(),
+  visible: true,
+  title: "OSMStandard",
+});
+
+// Humanitarian
+const openstreetMapHumanitarian = new ol.layer.Tile({
+  source: new ol.source.OSM({
+    url: "https://{a-c}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+  }),
+  visible: false,
+  title: "OSMHumanitarian",
+});
+
+// BingMaps
+const bingMaps = new ol.layer.Tile({
+  source: new ol.source.BingMaps({
+    key: "AmN9lEwJOUA7IWWh5Oka0_Bu5JjQxo9MXb4LbvjK58NNOgtmWQ_qOEgyXfntYiHW",
+    imagerySet: "Aerial", // Road, CanvasDark, CanvasGray, OrdnanceSurvey, Aerial
+  }),
+  visible: false,
+  title: "BingMaps",
+});
+
+const baseLayerGroup = new ol.layer.Group({
+  layers: [opentreetMapStandard, openstreetMapHumanitarian, bingMaps],
+});
+
+map.addLayer(baseLayerGroup);
+```
 
 ---
 
