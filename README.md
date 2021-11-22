@@ -51,7 +51,7 @@ ToC:
 ### Core Nuts and Bolts of OpenLayers:
 
 - [Key Concepts](https://github.com/Adamskoullos/openlayers-guide/blob/main/course_notes/key_concepts.md)
-- [Raster Layers]()
+- [Raster Layers](https://github.com/Adamskoullos/openlayers-guide/blob/main/course_notes/raster_layers.md)
 - [Vector Layers]()
 - [Styling Vector Layers]()
 - [Projections]()
