@@ -41,7 +41,7 @@ const init = () => {
   map.addLayer(baseLayerGroup);
 
   // Base layer switcher logic ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // Grab base layer elements
+  // Grab base layer radio elements
   const baseLayerElements = document.querySelectorAll(
     ".sidebar > input[type=radio]"
   );
@@ -90,6 +90,28 @@ const init = () => {
     layers: [tileArgGISLayer, WMSLayer],
   });
   map.addLayer(rasterTileLayerGroup);
+
+  // Tile layer switcher logic ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  // Raster Tile layer checkbox elements
+  const rasterLayerCheckboxElements = document.querySelectorAll(
+    ".sidebar > input[type=checkbox]"
+  );
+  // Add event listener to checkboxes
+  rasterLayerCheckboxElements.forEach((el) => {
+    el.addEventListener("change", (e) => {
+      // Independently overlay tile layers on top of each other and the base layer
+
+      rasterTileLayerGroup.getLayers().forEach((element, index, array) => {
+        if (e.target.checked && element.get("title") === el.value) {
+          element.set("visible", true);
+        }
+        if (!e.target.checked && element.get("title") === el.value) {
+          element.set("visible", false);
+        }
+      });
+    });
+  });
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 };
 

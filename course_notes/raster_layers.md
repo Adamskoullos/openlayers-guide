@@ -8,8 +8,7 @@ ToC:
 - [Tiled ArgGISRest Layer](#Tiled-ArgGISRest-Layer)
 - [TileWMS Layer](#TileWMS-Layer)
 - [Setter and Getter methods in OpenLayers](#Setter-and-Getter-methods-in-OpenLayers)
-- [Managing Multi-Layers]()
-- [Static Raster Images]()
+- [Managing Multi-Layers](#Managing-Multi-Layers)
 
 ---
 
@@ -333,9 +332,57 @@ baseLayerElements.forEach((el) => {
 - Section 3 > Wire up the tiled layers with checkboxes so they can be added as overlays on top of the base layer and also stacked on top of each other:
 
 ```js
+// Tile Layers >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+// TileArgGIS
+const tileArgGISLayer = new ol.layer.Tile({
+  source: new ol.source.TileArcGISRest({
+    url: "https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/Demographics/ESRI_Population_World/MapServer",
+  }),
+  visible: false,
+  title: "TileArcGISRest",
+});
+// WMS
+const WMSLayer = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    url: "https://nowcoast.noaa.gov/arcgis/services/nowcoast/analysis_meteohydro_sfc_qpe_time/MapServer/WMSServer?",
+    params: {
+      LAYERS: 1, // image layer id
+      FORMAT: "image/png",
+      TRANSPARENT: true,
+    },
+  }),
+  visible: false,
+  title: "WMS",
+});
+// Raster Tile Layer Group
+const rasterTileLayerGroup = new ol.layer.Group({
+  layers: [tileArgGISLayer, WMSLayer],
+});
+map.addLayer(rasterTileLayerGroup);
+
+// Tile layer switcher logic ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Raster Tile layer checkbox elements
+const rasterLayerCheckboxElements = document.querySelectorAll(
+  ".sidebar > input[type=checkbox]"
+);
+// Add event listener to checkboxes
+rasterLayerCheckboxElements.forEach((el) => {
+  el.addEventListener("change", (e) => {
+    // Independently overlay tile layers on top of each other and the base layer
+
+    rasterTileLayerGroup.getLayers().forEach((element, index, array) => {
+      if (e.target.checked && element.get("title") === el.value) {
+        element.set("visible", true);
+      }
+      if (!e.target.checked && element.get("title") === el.value) {
+        element.set("visible", false);
+      }
+    });
+  });
+});
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ```
 
 ---
-
-## Static Raster Images
