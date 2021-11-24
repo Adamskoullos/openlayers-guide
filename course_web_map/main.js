@@ -34,8 +34,40 @@ const init = () => {
     title: "BingMaps",
   });
 
+  // UK Vector Tile Layer (Added to the base map layer group) ++++++++++++++++
+  const ukOpenstreetMapVectorTile = new ol.layer.VectorTile({
+    source: new ol.source.VectorTile({
+      url: "https://api.maptiler.com/tiles/uk-openzoomstack/{z}/{x}/{y}.pbf?key=U8jXzU9f0Kk9LQKKqm0R",
+      format: new ol.format.MVT(),
+      attributions:
+        '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a>, Contains OS data © Crown copyright and database right 2019',
+    }),
+    visible: false,
+    title: "UKVectorTileLayer",
+  });
+
+  // Open Map tiles Vector Tile Layer (Added to the base map layer group) ++++++++++++++++
+  const worldOpenstreetMapVectorTile = new ol.layer.VectorTile({
+    source: new ol.source.VectorTile({
+      url: "https://api.maptiler.com/tiles/v3-openmaptiles/{z}/{x}/{y}.pbf?key=U8jXzU9f0Kk9LQKKqm0R",
+      format: new ol.format.MVT(),
+      attributions:
+        '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+    }),
+    visible: false,
+    title: "wolrdOpenMapTiles",
+  });
+
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
   const baseLayerGroup = new ol.layer.Group({
-    layers: [opentreetMapStandard, openstreetMapHumanitarian, bingMaps],
+    layers: [
+      opentreetMapStandard,
+      openstreetMapHumanitarian,
+      bingMaps,
+      ukOpenstreetMapVectorTile,
+      worldOpenstreetMapVectorTile,
+    ],
   });
 
   map.addLayer(baseLayerGroup);
@@ -62,7 +94,7 @@ const init = () => {
 
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  // Tile Layers >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  // Tile Overlay Layers >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // TileArgGIS
   const tileArgGISLayer = new ol.layer.Tile({

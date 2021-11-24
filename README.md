@@ -52,7 +52,7 @@ ToC:
 
 - [Key Concepts](https://github.com/Adamskoullos/openlayers-guide/blob/main/course_notes/key_concepts.md)
 - [Raster Layers](https://github.com/Adamskoullos/openlayers-guide/blob/main/course_notes/raster_layers.md)
-- [Vector Layers]()
+- [Vector Layers](https://github.com/Adamskoullos/openlayers-guide/blob/main/course_notes/vector_layers.md)
 - [Styling Vector Layers]()
 - [Projections]()
 - [Map Interactions]()
